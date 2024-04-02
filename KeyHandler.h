@@ -1,5 +1,6 @@
 #ifndef KEYHANDLER_H
 #define KEYHANDLER_H
+#include <termios.h>
 enum Direction {
     Error = -1,
     West = 0,
@@ -10,7 +11,7 @@ enum Direction {
 class KeyHandler
 {
 private:
-    static struct termios t;
+    struct termios t;
     void reset_terminal();
     void configure_terminal();
 public:

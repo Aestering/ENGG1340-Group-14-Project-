@@ -1,7 +1,8 @@
-#include <iostream>
+#include <bits/stdc++.h>
 #include <termios.h>
 #include <unistd.h>
 #include "KeyHandler.h"
+
 void KeyHandler::reset_terminal(){
     printf("\e[m"); // reset color changes
     printf("\e[?25h"); // show cursor
@@ -16,6 +17,12 @@ void KeyHandler :: configure_terminal(){
     t.c_lflag &= ~(ICANON | ECHO);
     tcsetattr(STDIN_FILENO, TCSANOW, &t);
     printf("\e[?25l"); // hide cursor
+}
+KeyHandler::KeyHandler(){
+    configure_terminal();
+}
+KeyHandler::~KeyHandler(){
+    reset_terminal();
 }
 enum Direction KeyHandler :: get_input(){
     char user_input = getchar();
