@@ -28,18 +28,18 @@ enum Direction KeyHandler :: get_input(){
     char user_input = getchar();
     switch (user_input)
     {
-    case 'a':
-        return West;
-        break;
-    case 'w':
-        return North;
-        break;
-    case 'd':
-        return East;
-        break;
-    case 's':
-        return South;
-        break;
+        case 'a':
+            return West;
+            break;
+        case 'w':
+            return North;
+            break;
+        case 'd':
+            return East;
+            break;
+        case 's':
+            return South;
+            break;
     }
     return Error;
 }
