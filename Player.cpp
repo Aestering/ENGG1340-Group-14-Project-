@@ -2,6 +2,7 @@
 #include <pthread.h>
 #include <utility>
 #include "Player.h"
+#include "Game_Data.h"
 using namespace std;
 void *handle_thread(void *p){
     Player *player = (Player*)p;
@@ -42,4 +43,8 @@ void Player::update_body(){
     if(direction == South){
         x[0]++;
     }
+    if(x[0] >= HEIGHT) x[0] = 0; 
+    if(x[0] < 0) x[0] = HEIGHT - 1;
+    if(y[0] >= WIDTH) y[0] = 0; 
+    if(y[0] < 0) y[0] = WIDTH - 1;
 }
