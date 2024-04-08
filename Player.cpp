@@ -32,10 +32,6 @@ void Player::update_body(){
         x[i] = x[i - 1];
         y[i] = y[i - 1];
     } 
-    if(x[0] >= HEIGHT) x[0] = 1; 
-    if(x[0] < 0) x[0] = HEIGHT - 2;
-    if(y[0] >= WIDTH) y[0] = 1; 
-    if(y[0] < 0) y[0] = WIDTH - 2;
     if(direction == West){
         y[0]--;
     }
@@ -48,9 +44,9 @@ void Player::update_body(){
     if(direction == South){
         x[0]++;
     }
-    if(x[0] >= HEIGHT) x[0] = 1; 
+    if(x[0] >= HEIGHT - 1) x[0] = 1; 
     if(x[0] <= 0) x[0] = HEIGHT - 2;
-    if(y[0] >= WIDTH) y[0] = 1; 
+    if(y[0] >= WIDTH - 1) y[0] = 1; 
     if(y[0] <= 0) y[0] = WIDTH - 2;
 }
 bool Player::check(int appleX, int appleY){

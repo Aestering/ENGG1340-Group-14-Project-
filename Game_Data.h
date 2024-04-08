@@ -17,6 +17,6 @@ const std::string RESET = "\033[0m";
 const std::string BLOCK = "\u2588";
 const std::string SHADE = "\u2591";
 const std::string CIRCLE = "\u25CF";
-const int WIDTH = 55;
+const int WIDTH = 54;
 const int HEIGHT = 12;
 #endif
