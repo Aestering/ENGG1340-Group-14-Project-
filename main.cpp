@@ -33,7 +33,8 @@ void printWithSuspense(const string& text, int delayMs) {
 int main() {
     int choice = 1;
     bool exitMenu = false;
-    int delay = 100;
+    int delay1 = 100;
+    int delay2 = 10;
     string message1 = "Printing with suspense...\n"
                        "new line\n"
                        "lol...\n"
@@ -92,7 +93,7 @@ int main() {
                         cout << "You selected Option 2." << endl;
                         // Add your code here for Option 2
                         system("clear"); // Clear the console screen
-                        printWithSuspense(message1, delay); // Print the items with suspense
+                        printWithSuspense(message1, delay1); // Print the items with suspense
                         cout << "Press Enter to continue..." << endl;
                         cin.ignore(); // Wait for user to press Enter
                         break;
@@ -102,11 +103,11 @@ int main() {
                         cout << "You selected Option 3." << endl;
                         // Add your code here for Option 3
                         system("clear"); // Clear the console screen
-                        printWithSuspense(message2, delay);
+                        printWithSuspense(message2, delay2);
                         cout << "Press Enter to continue..." << endl;
                         cin.ignore(); // Wait for user to press Enter
                         break;
-                        
+
                     case 4:
                         // Exit the menu
                         std::cout << "Exiting the menu." << std::endl;
