@@ -64,6 +64,7 @@ int main() {
     while (!exitMenu) {
         // Read a single character from the terminal
         char input;
+        int result;
         read(STDIN_FILENO, &input, 1);
 
 
@@ -81,7 +82,12 @@ int main() {
             case '\n': // Enter key
                 switch (choice) {
                     case 1:
-                        run();
+                        result = run_game();
+                        if(result == 0) printWithSuspense("You Won!!!", delay1);
+                        else if(result == 1) printWithSuspense("You Lost :(((", delay1);
+                        else printWithSuspense("Draw", delay1);
+                        cout << "Press Enter to continue..." << endl;
+                        cin.ignore();
                         break;
                     case 2:
                         system("clear"); 

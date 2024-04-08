@@ -20,28 +20,33 @@ Bot::~Bot(){
 void Bot::update_direction(Player &player, int appleX, int appleY) {
     int botX = x[0];
     int botY = y[0];
-
+    srand(time(NULL));
+    int flag = rand() % 3;
     int distanceX = appleX - botX;
     int distanceY = appleY - botY;
 
     int nextX = botX + (distanceX > 0 ? 1 : -1); 
     int nextY = botY + (distanceY > 0 ? 1 : -1); 
+    if(flag){
+        if (abs(distanceX) != 0) {
 
-    if (abs(distanceX) > abs(distanceY)) {
+            if (nextX >= 0 && nextX < HEIGHT && !islegible(player, nextX, botY)) {
+                this->direction = (distanceX > 0 ? South : North);
+            } else if (nextY >= 0 && nextY < HEIGHT && !islegible(player, botX, nextY)) {
+                this->direction = (distanceY > 0 ? East : West);
+            }
+        } else {
 
-        if (nextX >= 0 && nextX < HEIGHT && !islegible(player, nextX, botY)) {
-            this->direction = (distanceX > 0 ? South : North);
-        } else if (nextY >= 0 && nextY < HEIGHT && !islegible(player, botX, nextY)) {
-            this->direction = (distanceY > 0 ? East : West);
+            if (nextY >= 0 && nextY < WIDTH && !islegible(player, botX, nextY)) {
+                this->direction = (distanceY > 0 ? East : West);
+            } else if (nextX >= 0 && nextX < WIDTH && !islegible(player, nextX, botY)) {
+                this->direction = (distanceX > 0 ? South : North);
+            }
         }
-    } else {
-
-        if (nextY >= 0 && nextY < WIDTH && !islegible(player, botX, nextY)) {
-            this->direction = (distanceY > 0 ? East : West);
-        } else if (nextX >= 0 && nextX < WIDTH && !islegible(player, nextX, botY)) {
-            this->direction = (distanceX > 0 ? South : North);
-        }
+    }else{
+        this->direction = (Direction)(rand() % 4);
     }
+    
 }
 void Bot::update_body(){
     for(int i = body; i > 0; i--){

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector> 
 #include <unistd.h>
+#include <iomanip>
 #include "Bot.h"
 #include "Game_Data.h"
 #include "Player.h"
@@ -16,10 +17,13 @@ std::string board[] = {"000000000000000000000000000000000000000000000000000000",
                        "0                                                    0",
                        "0                                                    0",
                        "000000000000000000000000000000000000000000000000000000"};
-void run() {
+int run_game() {
     Player player;
     Bot bot;
     int appleX, appleY;
+    int timer = 100;
+    double t = 0;
+
     srand(time(NULL));
     appleX = rand() % (HEIGHT - 2) + 1;
     appleY = rand() % (WIDTH - 2) + 1;
@@ -27,7 +31,7 @@ void run() {
         player.draw(board);
         bot.draw(board);
         board[appleX][appleY] = APPLE;
-        
+        std::cout << std::left << std::setw(20) << player.body - 3 << std::setw(20) << timer << std::setw(20) << bot.body - 3 << std::endl;
         for (int i = 0; i < HEIGHT; i++)
         {
             for (int j = 0; j < WIDTH; j++)
@@ -47,11 +51,13 @@ void run() {
             appleX = rand() % (HEIGHT - 2) + 1;
             appleY = rand() % (WIDTH - 2) + 1;
         }
-        if(bot.check_collision(player)){
-            return;
+        if(timer == 0){
+            if(player.body > bot.body) return 0;
+            else if(player.body < bot.body) return 1;
+            else return 2;
         }
         usleep(1000 * 100);
-
+        t += 0.1;
         system("clear");
         for (int i = 0; i < HEIGHT; i++)
         {
@@ -60,6 +66,11 @@ void run() {
                 if(board[i][j] != WALL) board[i][j] = ' ';
                 else board[i][j] = WALL;
             }
+        }
+        
+        if(t >= 1 && timer > 0){
+            t = 0;
+            timer--;
         }
     }    
 }
