@@ -1,7 +1,7 @@
 #include <iostream>
 #include <termios.h>
 #include <unistd.h>
-#include <Game.h>
+#include "Game.h"
 using namespace std;
 
 // Function to enable raw terminal input (disabling echo and line buffering)
@@ -46,7 +46,7 @@ int main() {
         char input;
         read(STDIN_FILENO, &input, 1);
 
-        // Process the input
+
         switch (input) {
             case 'w':
             case 'W':
@@ -89,7 +89,12 @@ int main() {
 
         // Clear the console screen
         system("clear");
-
+        cout << "███████╗███╗   ██╗ █████╗ ██╗  ██╗███████╗     ██████╗  █████╗ ███╗   ███╗███████╗" << endl;
+        cout << "██╔════╝████╗  ██║██╔══██╗██║ ██╔╝██╔════╝    ██╔════╝ ██╔══██╗████╗ ████║██╔════╝" << endl;
+        cout << "███████╗██╔██╗ ██║███████║█████╔╝ █████╗      ██║  ███╗███████║██╔████╔██║█████╗  " << endl;
+        cout << "╚════██║██║╚██╗██║██╔══██║██╔═██╗ ██╔══╝      ██║   ██║██╔══██║██║╚██╔╝██║██╔══╝  " << endl;
+        cout << "███████║██║ ╚████║██║  ██║██║  ██╗███████╗    ╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗" << endl;
+        cout << "╚══════╝╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝     ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝" << endl;
         // Print the updated menu with the selected choice highlighted
         std::cout << "=== Main Menu ===" << std::endl;
         for (int i = 1; i <= 4; i++) {
