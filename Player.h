@@ -1,10 +1,9 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 #include "KeyHandler.h"
-#include <bits/stdc++.h>
+#include <string>
 #include <pthread.h>
-#include <utility>
-#include <semaphore.h>
+
 class Player
 {
 private:
@@ -17,6 +16,8 @@ public:
     Player();
     void update_direction();
     void update_body();
+    bool check(int, int);
+    void draw(std::string (&board)[]);
     ~Player();
 };
 #endif

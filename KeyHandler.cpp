@@ -26,6 +26,7 @@ KeyHandler::~KeyHandler(){
 }
 enum Direction KeyHandler :: get_input(){
     char user_input = getchar();
+    tolower(user_input);
     switch (user_input)
     {
         case 'a':
@@ -40,6 +41,9 @@ enum Direction KeyHandler :: get_input(){
         case 's':
             return South;
             break;
+        case 'p':
+            reset_terminal();
+            exit(0);
     }
     return Error;
 }

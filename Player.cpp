@@ -23,14 +23,19 @@ Player::~Player(){
 
 }
 void Player::update_direction(){
+
     Direction direction = key.get_input();
-    this->direction = direction;
+    if(direction != Error) this->direction = direction;
 }
 void Player::update_body(){
     for(int i = body; i > 0; i--){
         x[i] = x[i - 1];
         y[i] = y[i - 1];
     } 
+    if(x[0] >= HEIGHT) x[0] = 1; 
+    if(x[0] < 0) x[0] = HEIGHT - 2;
+    if(y[0] >= WIDTH) y[0] = 1; 
+    if(y[0] < 0) y[0] = WIDTH - 2;
     if(direction == West){
         y[0]--;
     }
@@ -43,8 +48,20 @@ void Player::update_body(){
     if(direction == South){
         x[0]++;
     }
-    if(x[0] >= HEIGHT) x[0] = 0; 
-    if(x[0] < 0) x[0] = HEIGHT - 1;
-    if(y[0] >= WIDTH) y[0] = 0; 
-    if(y[0] < 0) y[0] = WIDTH - 1;
+    if(x[0] >= HEIGHT) x[0] = 1; 
+    if(x[0] <= 0) x[0] = HEIGHT - 2;
+    if(y[0] >= WIDTH) y[0] = 1; 
+    if(y[0] <= 0) y[0] = WIDTH - 2;
+}
+bool Player::check(int appleX, int appleY){
+    if(x[0] == appleX && y[0] == appleY){
+        body++;
+        return true;
+    }
+    return false;
+}
+void Player::draw(string (&board)[]){
+    for(int i = 0; i < body; i++){
+        if(board[x[i]][y[i]] == VOID) board[x[i]][y[i]] = SNAKE_BODY;
+    }
 }

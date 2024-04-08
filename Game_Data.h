@@ -1,17 +1,22 @@
 #ifndef GAME_DATA_H
 #define GAME_DATA_H
-
-
-#define RED "\033[31m"
-#define GREEN  "\033[32m"
-#define YELLOW  "\033[33m"
-#define BLUE  "\033[34m"
-#define MAGENTA  "\033[35m"
-#define CYAN  "\033[36m"
-#define RESET  "\033[0m"
-#define BLOCK  "\u2588"
-#define SHADE  "\u2591"
-
-#define WIDTH  55
-#define HEIGHT  12
+#include <string>
+enum Glyphs{
+    VOID = ' ',
+    WALL = '0',
+    SNAKE_BODY = '1',
+    APPLE = '2'
+};
+const std::string RED = "\033[31m";
+const std::string GREEN = "\033[32m";
+const std::string YELLOW = "\033[33m";
+const std::string BLUE = "\033[34m";
+const std::string MAGENTA = "\033[35m";
+const std::string CYAN = "\033[36m";
+const std::string RESET = "\033[0m";
+const std::string BLOCK = "\u2588";
+const std::string SHADE = "\u2591";
+const std::string CIRCLE = "\u25CF";
+const int WIDTH = 55;
+const int HEIGHT = 12;
 #endif
