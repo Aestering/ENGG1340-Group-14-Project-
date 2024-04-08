@@ -2,6 +2,8 @@
 #include <termios.h>
 #include <unistd.h>
 #include "Game.h"
+#include <chrono>
+#include <thread>
 using namespace std;
 
 // Function to enable raw terminal input (disabling echo and line buffering)
@@ -20,9 +22,26 @@ void disableRawMode() {
     tcsetattr(STDIN_FILENO, TCSAFLUSH, &raw);
 }
 
+void printWithSuspense(const string& text, int delayMs) {
+    for (char c : text) {
+        cout << c << flush;
+        this_thread::sleep_for(chrono::milliseconds(delayMs));
+    }
+    cout << endl;
+}
+
 int main() {
     int choice = 1;
     bool exitMenu = false;
+    int delay = 100;
+    string message1 = "Printing with suspense...\n"
+                       "new line\n"
+                       "lol...\n"
+                       "new line\n";
+    string message2 = "Printing with suspense...\n"
+                       "new line\n"
+                       "lol...\n"
+                       "new line\n";
 
     enableRawMode();
 
@@ -70,14 +89,24 @@ int main() {
                         break;
                     case 2:
                         // Code for Option 2
-                        std::cout << "You selected Option 2." << std::endl;
+                        cout << "You selected Option 2." << endl;
                         // Add your code here for Option 2
+                        system("clear"); // Clear the console screen
+                        printWithSuspense(message1, delay); // Print the items with suspense
+                        cout << "Press Enter to continue..." << endl;
+                        cin.ignore(); // Wait for user to press Enter
                         break;
+
                     case 3:
                         // Code for Option 3
-                        std::cout << "You selected Option 3." << std::endl;
+                        cout << "You selected Option 3." << endl;
                         // Add your code here for Option 3
+                        system("clear"); // Clear the console screen
+                        printWithSuspense(message2, delay);
+                        cout << "Press Enter to continue..." << endl;
+                        cin.ignore(); // Wait for user to press Enter
                         break;
+                        
                     case 4:
                         // Exit the menu
                         std::cout << "Exiting the menu." << std::endl;
