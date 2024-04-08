@@ -2,9 +2,9 @@
 #include <pthread.h>
 #include <vector>
 #include <utility>
+#include <algorithm>
 #include "Player.h"
 #include "Game_Data.h"
-using namespace std;
 void *handle_thread(void *p){
     Player *player = (Player*)p;
     while (true)
@@ -26,7 +26,7 @@ Player::~Player(){
 void Player::update_direction(){
 
     Direction direction = key.get_input();
-    if(direction != Error) this->direction = direction;
+    if(direction != Error && (std::max(this->direction, direction) - std::min(this->direction, direction)) != 2) this->direction = direction;
 }
 void Player::update_body(){
     for(int i = body; i > 0; i--){
@@ -57,7 +57,7 @@ bool Player::check(int appleX, int appleY){
     }
     return false;
 }
-void Player::draw(string (&board)[HEIGHT]){
+void Player::draw(std::string (&board)[HEIGHT]){
     for(int i = 0; i < body; i++){
         if(board[x[i]][y[i]] == VOID) board[x[i]][y[i]] = SNAKE_BODY;
     }

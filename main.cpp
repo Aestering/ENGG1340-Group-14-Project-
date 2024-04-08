@@ -30,7 +30,7 @@ int main() {
         {
             for (int j = 0; j < WIDTH; j++)
             {
-                if(board[i][j] == SNAKE_BODY) std::cout << RED << BLOCK;
+                if(board[i][j] == SNAKE_BODY) std::cout << YELLOW << BLOCK;
                 else if(board[i][j] == WALL) std::cout << BLUE << SHADE << RESET;
                 else if(board[i][j] == APPLE) std::cout << RED << CIRCLE << RESET;
                 else std::cout << board[i][j] << RESET;
@@ -40,8 +40,8 @@ int main() {
 
         player.update_body();
         if(player.check(appleX, appleY)){
-            appleX = rand() % (HEIGHT - 1) + 1;
-            appleY = rand() % (WIDTH - 1) + 1;
+            appleX = rand() % (HEIGHT - 2) + 1;
+            appleY = rand() % (WIDTH - 2) + 1;
         }
         usleep(1000 * 100);
         system("clear");
