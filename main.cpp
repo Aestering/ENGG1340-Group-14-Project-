@@ -1,7 +1,7 @@
 #include <iostream>
 #include <termios.h>
 #include <unistd.h>
-#include "Game.h"
+#include <Game.h>
 using namespace std;
 
 // Function to enable raw terminal input (disabling echo and line buffering)
@@ -27,6 +27,14 @@ int main() {
     enableRawMode();
 
     // Print the menu once
+    cout << "███████╗███╗   ██╗ █████╗ ██╗  ██╗███████╗     ██████╗  █████╗ ███╗   ███╗███████╗" << endl;
+    cout << "██╔════╝████╗  ██║██╔══██╗██║ ██╔╝██╔════╝    ██╔════╝ ██╔══██╗████╗ ████║██╔════╝" << endl;
+    cout << "███████╗██╔██╗ ██║███████║█████╔╝ █████╗      ██║  ███╗███████║██╔████╔██║█████╗  " << endl;
+    cout << "╚════██║██║╚██╗██║██╔══██║██╔═██╗ ██╔══╝      ██║   ██║██╔══██║██║╚██╔╝██║██╔══╝  " << endl;
+    cout << "███████║██║ ╚████║██║  ██║██║  ██╗███████╗    ╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗" << endl;
+    cout << "╚══════╝╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝     ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝" << endl;
+
+
     cout << "=== Main Menu ===" << endl;
     cout << "1. Play" << endl;
     cout << "2. Story" << endl;
@@ -57,6 +65,7 @@ int main() {
                     case 1:
                         // Code for Option 1
                         std::cout << "You selected Option 1." << std::endl;
+                        // Add your code here for Option 1
                         run();
                         break;
                     case 2:
