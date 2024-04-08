@@ -1,57 +1,112 @@
 #include <iostream>
-#include <vector> 
+#include <termios.h>
 #include <unistd.h>
-#include "KeyHandler.h"
-#include "Player.h"
-#include "Game_Data.h"
-std::string board[] = {"000000000000000000000000000000000000000000000000000000",
-                       "0                                                    0",
-                       "0                                                    0",
-                       "0                                                    0",
-                       "0                                                    0",
-                       "0                                                    0",
-                       "0                                                    0",
-                       "0                                                    0",
-                       "0                                                    0",
-                       "0                                                    0",
-                       "0                                                    0",
-                       "000000000000000000000000000000000000000000000000000000"};
+#include "Game.h"
+using namespace std;
+
+// Function to enable raw terminal input (disabling echo and line buffering)
+void enableRawMode() {
+    struct termios raw;
+    tcgetattr(STDIN_FILENO, &raw);
+    raw.c_lflag &= ~(ECHO | ICANON);
+    tcsetattr(STDIN_FILENO, TCSAFLUSH, &raw);
+}
+
+// Function to disable raw terminal input (restoring echo and line buffering)
+void disableRawMode() {
+    struct termios raw;
+    tcgetattr(STDIN_FILENO, &raw);
+    raw.c_lflag |= (ECHO | ICANON);
+    tcsetattr(STDIN_FILENO, TCSAFLUSH, &raw);
+}
+
 int main() {
-    KeyHandler key;
-    Player player;
-    int appleX, appleY;
-    srand(time(NULL));
-    appleX = rand() % (HEIGHT - 2) + 1;
-    appleY = rand() % (WIDTH - 2) + 1;
-    while (true) {
-        player.draw(board);
-        board[appleX][appleY] = APPLE;
-        for (int i = 0; i < HEIGHT; i++)
-        {
-            for (int j = 0; j < WIDTH; j++)
-            {
-                if(board[i][j] == SNAKE_BODY) std::cout << YELLOW << BLOCK;
-                else if(board[i][j] == WALL) std::cout << BLUE << SHADE << RESET;
-                else if(board[i][j] == APPLE) std::cout << RED << CIRCLE << RESET;
-                else std::cout << board[i][j] << RESET;
+    int choice = 1;
+    bool exitMenu = false;
+
+    enableRawMode();
+
+    // Print the menu once
+    cout << "=== Main Menu ===" << endl;
+    cout << "1. Play" << endl;
+    cout << "2. Story" << endl;
+    cout << "3. Tutorial" << endl;
+    cout << "4. Exit" << endl;
+
+    while (!exitMenu) {
+        // Read a single character from the terminal
+        char input;
+        read(STDIN_FILENO, &input, 1);
+
+        // Process the input
+        switch (input) {
+            case 'w':
+            case 'W':
+                if (choice > 1) {
+                    choice--;
+                }
+                break;
+            case 's':
+            case 'S':
+                if (choice < 4) {
+                    choice++;
+                }
+                break;
+            case '\n': // Enter key
+                switch (choice) {
+                    case 1:
+                        // Code for Option 1
+                        std::cout << "You selected Option 1." << std::endl;
+                        run();
+                        break;
+                    case 2:
+                        // Code for Option 2
+                        std::cout << "You selected Option 2." << std::endl;
+                        // Add your code here for Option 2
+                        break;
+                    case 3:
+                        // Code for Option 3
+                        std::cout << "You selected Option 3." << std::endl;
+                        // Add your code here for Option 3
+                        break;
+                    case 4:
+                        // Exit the menu
+                        std::cout << "Exiting the menu." << std::endl;
+                        exitMenu = true;
+                        break;
+                }
+                break;
+        }
+
+        // Clear the console screen
+        system("clear");
+
+        // Print the updated menu with the selected choice highlighted
+        std::cout << "=== Main Menu ===" << std::endl;
+        for (int i = 1; i <= 4; i++) {
+            if (i == choice) {
+                std::cout << "> ";
+            }
+            std::cout << i << ". ";
+            switch (i) {
+                case 1:
+                    std::cout << "Play";
+                    break;
+                case 2:
+                    std::cout << "Story";
+                    break;
+                case 3:
+                    std::cout << "Instructions";
+                    break;
+                case 4:
+                    std::cout << "Exit";
+                    break;
             }
             std::cout << std::endl;
         }
+    }
 
-        player.update_body();
-        if(player.check(appleX, appleY)){
-            appleX = rand() % (HEIGHT - 2) + 1;
-            appleY = rand() % (WIDTH - 2) + 1;
-        }
-        usleep(1000 * 100);
-        system("clear");
-        for (int i = 0; i < HEIGHT; i++)
-        {
-            for (int j = 0; j < WIDTH; j++)
-            {
-                if(board[i][j] != WALL) board[i][j] = ' ';
-                else board[i][j] = WALL;
-            }
-        }
-    }    
+    disableRawMode();
+
+    return 0;
 }
