@@ -1,5 +1,6 @@
-#include <bits/stdc++.h>
+#include <iostream>
 #include <pthread.h>
+#include <vector>
 #include <utility>
 #include "Player.h"
 #include "Game_Data.h"
@@ -56,7 +57,7 @@ bool Player::check(int appleX, int appleY){
     }
     return false;
 }
-void Player::draw(string (&board)[]){
+void Player::draw(string (&board)[HEIGHT]){
     for(int i = 0; i < body; i++){
         if(board[x[i]][y[i]] == VOID) board[x[i]][y[i]] = SNAKE_BODY;
     }
