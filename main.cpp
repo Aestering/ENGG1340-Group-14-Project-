@@ -5,21 +5,21 @@
 #include <chrono>
 #include <thread>
 using namespace std;
+struct termios t;
+void reset_terminal(){
+    printf("\e[m"); // reset color changes
+    printf("\e[?25h"); // show cursor
+    fflush(stdout);
+    tcgetattr(STDIN_FILENO, &t);
+    t.c_lflag |= ~(ICANON | ECHO);
+    tcsetattr(STDIN_FILENO, TCSANOW, &t);
 
-// Function to enable raw terminal input (disabling echo and line buffering)
-void enableRawMode() {
-    struct termios raw;
-    tcgetattr(STDIN_FILENO, &raw);
-    raw.c_lflag &= ~(ECHO | ICANON);
-    tcsetattr(STDIN_FILENO, TCSAFLUSH, &raw);
 }
-
-// Function to disable raw terminal input (restoring echo and line buffering)
-void disableRawMode() {
-    struct termios raw;
-    tcgetattr(STDIN_FILENO, &raw);
-    raw.c_lflag |= (ECHO | ICANON);
-    tcsetattr(STDIN_FILENO, TCSAFLUSH, &raw);
+void configure_terminal(){
+    tcgetattr(STDIN_FILENO, &t);
+    t.c_lflag &= ~(ICANON | ECHO);
+    tcsetattr(STDIN_FILENO, TCSANOW, &t);
+    printf("\e[?25l"); // hide cursor
 }
 
 void printWithSuspense(const string& text, int delayMs) {
@@ -44,7 +44,7 @@ int main() {
                        "lol...\n"
                        "new line\n";
 
-    enableRawMode();
+    configure_terminal();
 
     // Print the menu once
     cout << "███████╗███╗   ██╗ █████╗ ██╗  ██╗███████╗     ██████╗  █████╗ ███╗   ███╗███████╗" << endl;
@@ -69,13 +69,11 @@ int main() {
 
         switch (input) {
             case 'w':
-            case 'W':
                 if (choice > 1) {
                     choice--;
                 }
                 break;
             case 's':
-            case 'S':
                 if (choice < 4) {
                     choice++;
                 }
@@ -83,29 +81,20 @@ int main() {
             case '\n': // Enter key
                 switch (choice) {
                     case 1:
-                        // Code for Option 1
-                        std::cout << "You selected Option 1." << std::endl;
-                        // Add your code here for Option 1
                         run();
                         break;
                     case 2:
-                        // Code for Option 2
-                        cout << "You selected Option 2." << endl;
-                        // Add your code here for Option 2
-                        system("clear"); // Clear the console screen
-                        printWithSuspense(message1, delay1); // Print the items with suspense
+                        system("clear"); 
+                        printWithSuspense(message1, delay1);
                         cout << "Press Enter to continue..." << endl;
-                        cin.ignore(); // Wait for user to press Enter
+                        cin.ignore();
                         break;
 
                     case 3:
-                        // Code for Option 3
-                        cout << "You selected Option 3." << endl;
-                        // Add your code here for Option 3
-                        system("clear"); // Clear the console screen
+                        system("clear");
                         printWithSuspense(message2, delay2);
                         cout << "Press Enter to continue..." << endl;
-                        cin.ignore(); // Wait for user to press Enter
+                        cin.ignore();
                         break;
 
                     case 4:
@@ -117,7 +106,6 @@ int main() {
                 break;
         }
 
-        // Clear the console screen
         system("clear");
         cout << "███████╗███╗   ██╗ █████╗ ██╗  ██╗███████╗     ██████╗  █████╗ ███╗   ███╗███████╗" << endl;
         cout << "██╔════╝████╗  ██║██╔══██╗██║ ██╔╝██╔════╝    ██╔════╝ ██╔══██╗████╗ ████║██╔════╝" << endl;
@@ -125,7 +113,6 @@ int main() {
         cout << "╚════██║██║╚██╗██║██╔══██║██╔═██╗ ██╔══╝      ██║   ██║██╔══██║██║╚██╔╝██║██╔══╝  " << endl;
         cout << "███████║██║ ╚████║██║  ██║██║  ██╗███████╗    ╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗" << endl;
         cout << "╚══════╝╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝     ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝" << endl;
-        // Print the updated menu with the selected choice highlighted
         std::cout << "=== Main Menu ===" << std::endl;
         for (int i = 1; i <= 4; i++) {
             if (i == choice) {
@@ -150,7 +137,7 @@ int main() {
         }
     }
 
-    disableRawMode();
+    reset_terminal();
 
     return 0;
 }

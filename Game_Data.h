@@ -1,11 +1,20 @@
 #ifndef GAME_DATA_H
 #define GAME_DATA_H
 #include <string>
+#include <pthread.h>
 enum Glyphs{
     VOID = ' ',
     WALL = '0',
     SNAKE_BODY = '1',
-    APPLE = '2'
+    APPLE = '2',
+    BOT_BODY = '3'
+};
+enum Direction {
+    Error = -1,
+    West = 0,
+    North = 1,
+    East = 2,
+    South = 3
 };
 const std::string RED = "\033[31m";
 const std::string GREEN = "\033[32m";

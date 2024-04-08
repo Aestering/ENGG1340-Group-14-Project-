@@ -1,3 +1,3 @@
 
-main: KeyHandler.cpp Player.cpp main.cpp KeyHandler.h Player.h Game_Data.h Game.h Game.cpp
-	g++ main.cpp KeyHandler.cpp Player.cpp Game.cpp -o main
+main: Player.cpp main.cpp Player.h Game_Data.h Game.h Game.cpp Bot.h Bot.cpp
+	g++ -pthread main.cpp Player.cpp Game.cpp Bot.cpp -o main

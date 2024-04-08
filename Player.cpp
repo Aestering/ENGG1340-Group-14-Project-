@@ -3,30 +3,58 @@
 #include <vector>
 #include <utility>
 #include <algorithm>
-#include "Player.h"
 #include "Game_Data.h"
+#include "Player.h"
+enum Direction get_input(){
+    char user_input = getchar();
+    tolower(user_input);
+    switch (user_input)
+    {
+        case 'a':
+            return West;
+            break;
+        case 'w':
+            return North;
+            break;
+        case 'd':
+            return East;
+            break;
+        case 's':
+            return South;
+            break;
+        case 'p':
+            exit(0);
+    }
+    return Error;
+}
+bool running = true;
+bool islegible(Direction before, Direction after){
+    return (std::max(before, after) - std::min(before, after)) != 2;
+}
 void *handle_thread(void *p){
-    Player *player = (Player*)p;
-    while (true)
+    struct Player *player = (Player*)p;
+    while (running)
     {
         player->update_direction();
     }
-    
+    pthread_exit(NULL); 
 }
 Player::Player(){
     x.resize(100, -1);
     y.resize(100, -1);
+    running = true;
     x[0] = 1;
     y[0] = 1;
     pthread_create(&update_thread, NULL, handle_thread, this);
 }
 Player::~Player(){
-
+    running = false;
 }
 void Player::update_direction(){
+    
+    Direction direction = get_input();
+    if(direction != Error && islegible(this->direction, direction)) this->direction = direction;
 
-    Direction direction = key.get_input();
-    if(direction != Error && (std::max(this->direction, direction) - std::min(this->direction, direction)) != 2) this->direction = direction;
 }
 void Player::update_body(){
     for(int i = body; i > 0; i--){
@@ -50,7 +78,7 @@ void Player::update_body(){
     if(y[0] >= WIDTH - 1) y[0] = 1; 
     if(y[0] <= 0) y[0] = WIDTH - 2;
 }
-bool Player::check(int appleX, int appleY){
+bool Player::check_apple(int appleX, int appleY){
     if(x[0] == appleX && y[0] == appleY){
         body++;
         return true;
@@ -59,6 +87,7 @@ bool Player::check(int appleX, int appleY){
 }
 void Player::draw(std::string (&board)[HEIGHT]){
     for(int i = 0; i < body; i++){
+        if(x[i] == -1 || y[i] == -1) continue;
         if(board[x[i]][y[i]] == VOID) board[x[i]][y[i]] = SNAKE_BODY;
     }
 }
