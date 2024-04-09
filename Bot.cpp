@@ -11,7 +11,7 @@ Bot::Bot(){
     x.resize(100, -1);
     y.resize(100, -1);
     x[0] = 1;
-    y[0] = 52;
+    y[0] = 48;
 }
 Bot::~Bot(){
 
@@ -22,13 +22,14 @@ void Bot::update_direction(Player &player, int appleX, int appleY) {
     int botY = y[0];
     srand(time(NULL));
     int flag = rand() % 3;
+    //flag = 1;
     int distanceX = appleX - botX;
     int distanceY = appleY - botY;
 
     int nextX = botX + (distanceX > 0 ? 1 : -1); 
     int nextY = botY + (distanceY > 0 ? 1 : -1); 
     if(flag){
-        if (abs(distanceX) != 0) {
+        if (abs(distanceX) != 0 /*abs(distanceY)*/) {
 
             if (nextX >= 0 && nextX < HEIGHT && !islegible(player, nextX, botY)) {
                 this->direction = (distanceX > 0 ? South : North);

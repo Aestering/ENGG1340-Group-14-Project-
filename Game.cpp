@@ -5,18 +5,31 @@
 #include "Bot.h"
 #include "Game_Data.h"
 #include "Player.h"
-std::string board[] = {"000000000000000000000000000000000000000000000000000000",
-                       "0                                                    0",
-                       "0                                                    0",
-                       "0                                                    0",
-                       "0                                                    0",
-                       "0                                                    0",
-                       "0                                                    0",
-                       "0                                                    0",
-                       "0                                                    0",
-                       "0                                                    0",
-                       "0                                                    0",
-                       "000000000000000000000000000000000000000000000000000000"};
+std::string board[] = {"00000000000000000000000000000000000000000000000000",
+                       "0                                                0",
+                       "0                                                0",
+                       "0                                                0",
+                       "0                                                0",
+                       "0                                                0",
+                       "0                                                0",
+                       "0                                                0",
+                       "0                                                0",
+                       "0                                                0",
+                       "0                                                0",
+                       "0                                                0",
+                       "0                                                0",
+                       "0                                                0",
+                       "0                                                0",
+                       "0                                                0",
+                       "0                                                0",
+                       "0                                                0",
+                       "0                                                0",
+                       "0                                                0",
+                       "0                                                0",
+                       "0                                                0",
+                       "0                                                0",
+                       "0                                                0",
+                       "00000000000000000000000000000000000000000000000000"};
 int run_game() {
     Player player;
     Bot bot;
@@ -31,7 +44,7 @@ int run_game() {
         player.draw(board);
         bot.draw(board);
         board[appleX][appleY] = APPLE;
-        std::cout << std::left << std::setw(20) << player.body - 3 << std::setw(20) << timer << std::setw(20) << bot.body - 3 << std::endl;
+        std::cout << std::left << std::setw(25) << player.body - 3 << std::setw(25) << timer << std::setw(25) << bot.body - 3 << std::endl;
         for (int i = 0; i < HEIGHT; i++)
         {
             for (int j = 0; j < WIDTH; j++)
