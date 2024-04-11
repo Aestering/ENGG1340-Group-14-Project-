@@ -16,10 +16,10 @@ public:
     int body = 3;
     Bot();
     void update_body();
-    void update_direction(Player &player, int appleX, int appleY);
+    void update_direction(int appleX, int appleY);
     bool check_apple(int, int);
     bool check_collision(Player& other);
-    bool islegible(Player &player, int nextX, int nextY);
+    bool islegible(Direction before, Direction after);
     void draw(std::string (&board)[HEIGHT]);
     ~Bot();
 };

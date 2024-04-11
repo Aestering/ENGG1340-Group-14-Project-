@@ -44,7 +44,7 @@ int run_game() {
         player.draw(board);
         bot.draw(board);
         board[appleX][appleY] = APPLE;
-        std::cout << std::left << std::setw(25) << player.body - 3 << std::setw(25) << timer << std::setw(25) << bot.body - 3 << std::endl;
+        std::cout << std::left  << "Your Score: "<< std::setw(7) <<player.body - 3  << "Time: "<< std::setw(7) << timer  << "Opponent's score: "<< std::setw(7) << bot.body - 3 << std::endl;
         for (int i = 0; i < HEIGHT; i++)
         {
             for (int j = 0; j < WIDTH; j++)
@@ -58,7 +58,7 @@ int run_game() {
             std::cout << std::endl;
         }
         player.update_body();
-        bot.update_direction(player, appleX, appleY);
+        bot.update_direction(appleX, appleY);
         bot.update_body();
         if(player.check_apple(appleX, appleY) || bot.check_apple(appleX, appleY)){
             appleX = rand() % (HEIGHT - 2) + 1;

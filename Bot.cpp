@@ -17,11 +17,11 @@ Bot::~Bot(){
 
 }
 
-void Bot::update_direction(Player &player, int appleX, int appleY) {
+void Bot::update_direction(int appleX, int appleY) {
     int botX = x[0];
     int botY = y[0];
     srand(time(NULL));
-    int flag = rand() % 3;
+    int flag = rand() % 4;
     //flag = 1;
     int distanceX = appleX - botX;
     int distanceY = appleY - botY;
@@ -29,18 +29,18 @@ void Bot::update_direction(Player &player, int appleX, int appleY) {
     int nextX = botX + (distanceX > 0 ? 1 : -1); 
     int nextY = botY + (distanceY > 0 ? 1 : -1); 
     if(flag){
-        if (abs(distanceX) != 0 /*abs(distanceY)*/) {
+        if (abs(distanceX) > abs(distanceY)) {
 
-            if (nextX >= 0 && nextX < HEIGHT && !islegible(player, nextX, botY)) {
+            if (nextX >= 0 && nextX < HEIGHT && islegible(this->direction, (distanceX > 0 ? South : North))) {
                 this->direction = (distanceX > 0 ? South : North);
-            } else if (nextY >= 0 && nextY < HEIGHT && !islegible(player, botX, nextY)) {
+            } else if (nextY >= 0 && nextY < HEIGHT && islegible(this->direction, (distanceY > 0 ? East : West))) {
                 this->direction = (distanceY > 0 ? East : West);
             }
         } else {
 
-            if (nextY >= 0 && nextY < WIDTH && !islegible(player, botX, nextY)) {
+            if (nextY >= 0 && nextY < WIDTH && islegible(this->direction, (distanceY > 0 ? East : West))) {
                 this->direction = (distanceY > 0 ? East : West);
-            } else if (nextX >= 0 && nextX < WIDTH && !islegible(player, nextX, botY)) {
+            } else if (nextX >= 0 && nextX < WIDTH && islegible(this->direction, (distanceX > 0 ? South : North))) {
                 this->direction = (distanceX > 0 ? South : North);
             }
         }
@@ -94,12 +94,12 @@ void Bot::draw(std::string (&board)[HEIGHT]){
         if(board[x[i]][y[i]] == VOID) board[x[i]][y[i]] = BOT_BODY;
     }
 }
-bool Bot::islegible(Player &player, int nextX, int nextY){
-    for(int i = 4; i < body; i++){
-       if(nextX == x[i] && nextY == y[i]) return true;
-    }
-    for(int i = 4; i < player.body; i++){
-       if(nextX == player.x[i] && nextY == player.y[i]) return true;
-    }
-    return false;
+bool Bot::islegible(Direction before, Direction after){
+    return (std::max(before, after) - std::min(before, after)) != 2;
 }
+//bool Bot::islegible(int nextX, int nextY){
+    //for(int i = 4; i < body; i++){
+    //   if(nextX == x[i] && nextY == y[i]) return true;
+    //}
+    //return false;
+//}
