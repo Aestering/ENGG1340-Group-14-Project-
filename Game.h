@@ -1,4 +1,4 @@
 #ifndef GAME_H
 #define GAME_H
-int run_game();
+int run_game(int);
 #endif

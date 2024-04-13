@@ -30,7 +30,7 @@ std::string board[] = {"00000000000000000000000000000000000000000000000000",
                        "0                                                0",
                        "0                                                0",
                        "00000000000000000000000000000000000000000000000000"};
-int run_game() {
+int run_game(int difficulty) {
     Player player;
     Bot bot;
     int appleX, appleY;
@@ -58,7 +58,7 @@ int run_game() {
             std::cout << std::endl;
         }
         player.update_body();
-        bot.update_direction(appleX, appleY);
+        bot.update_direction(appleX, appleY, difficulty);
         bot.update_body();
         if(player.check_apple(appleX, appleY) || bot.check_apple(appleX, appleY)){
             appleX = rand() % (HEIGHT - 2) + 1;
