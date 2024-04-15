@@ -21,8 +21,8 @@ void Bot::update_direction(int appleX, int appleY, int difficulty) {
     int botX = x[0];
     int botY = y[0];
     srand(time(NULL));
-    int flag = rand() % difficulty;
-    if(difficulty == 6) flag = 1;
+    int flag = rand() % (difficulty + 1);
+    if(difficulty == 5) flag = 1;
     int distanceX = appleX - botX;
     int distanceY = appleY - botY;
 

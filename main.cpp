@@ -106,7 +106,7 @@ int main() {
                     case 4:
                         system("clear"); 
                         std::cout << "=== Difficulty Menu ===" << std::endl;
-                        for (int i = 1; i <= 6; i++) {
+                        for (int i = 1; i <= 5; i++) {
                             if (i == difficulty) {
                                 std::cout << "> ";
                             }
@@ -127,9 +127,6 @@ int main() {
                                 case 5:
                                     std::cout << "Insane";
                                     break;
-                                case 6:
-                                    std::cout << "Just Give Up :)";
-                                    break;
                             }
                             std::cout << std::endl;
                         }
@@ -137,10 +134,10 @@ int main() {
                         while (input != '\n')
                         {
                             if(input == 'w' && difficulty > 1) difficulty--;
-                            else if(input == 's' && difficulty < 6) difficulty++;
+                            else if(input == 's' && difficulty < 5) difficulty++;
                             system("clear"); 
                             std::cout << "=== Difficulty Menu ===" << std::endl;
-                            for (int i = 1; i <= 6; i++) {
+                            for (int i = 1; i <= 5; i++) {
                                 if (i == difficulty) {
                                     std::cout << "> ";
                                 }
@@ -160,9 +157,6 @@ int main() {
                                         break;
                                     case 5:
                                         std::cout << "Insane";
-                                        break;
-                                    case 6:
-                                        std::cout << "Just Give Up :)";
                                         break;
                                 }
                                 std::cout << std::endl;
