@@ -35,14 +35,25 @@ int main() {
     bool exitMenu = false;
     int delay1 = 100;
     int delay2 = 10;
-    string message1 = "Printing with suspense...\n"
-                       "new line\n"
-                       "lol...\n"
-                       "new line\n";
-    string message2 = "Printing with suspense...\n"
-                       "new line\n"
-                       "lol...\n"
-                       "new line\n";
+    string message1 = "In the aftermath of World War 3, the world was ravaged by a perpetual nuclear winter that has stripped the land and seas of natural resources.\n"
+                       "Radioactive mutants emerged, placing humans at the bottom of the food chain.\n"
+                       "Constant famines, unknown diseases, and the everlasting cycle of hatred...\n"
+                       "Mankind was on the brink of destruction.\n...\n"
+                       "A uranium-powered village hidden underneath the desolate sandy dunes inhabited sentient colossal snakes that segregated themselves from humans.\n"
+                       "It all changed when Reggin, a boy whose brain structure was altered by radiation, was born.\n"
+                       "At birth, his presence shifted the balance of the world as he converted the radiation around him into psychic powers.\n"
+                       "The snakes, who were once hostile towards humans, were drawn to Reggin's Aura as he was the only human who could communicate with snakes.\n"
+                       "Reggin bridged the gap between humans and snakes, and lived in coexistence.\n"
+                       "Hailed as the village chief, Reggin reigned over the village, blessed with prosperity for a hundred years until his death.\n"
+                       "On his last day, he received a vision that foretold of the village's future.\n"
+                       "It was prophesied that the snakes would lead a warrior to the earth's core, where the last remaining resources are hidden.\n"
+                       "You, a candidate in the snake warrior selection test, will compete with other candidates and achieve the right to save humanity once and for all.\n"
+                       "The village chief has spoken, and the selection test begins!\n";
+
+    string message2 = "Use the WASD keys to change your snake's moving direction.\n"
+                       "There are apples scattered around the map, consume more apples than your opponent within the time limit.\n"
+                       "Choose your difficulty wisely, it might be too hard for you!\n"
+                       "Good luck, snake warrior!\n";
 
     configure_terminal();
 
