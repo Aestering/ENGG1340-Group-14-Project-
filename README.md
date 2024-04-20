@@ -16,7 +16,7 @@ In the main menu, you have the following options:
 - _Read Backstory:_ Immerse yourself in the lore of the world you're about to enter.
 - _Choose Difficulty:_ Select the right level to match your skills, from beginner to expert.
 
-Controls
+_Controls_
 - _WASD Keys:_ Use these keys to change your snake's moving direction, navigating the game area to collect food and avoid collisions.
 
 **_Compilation and Execution Instructions_**
