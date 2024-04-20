@@ -29,13 +29,13 @@ That's all!
 
 ### Features Implemented 🚀
 **Random Generation of Game Elements**
-Food Placement: Utilizes the random function in C++ to decide the positions of food items on the game board, ensuring each game offers a unique challenge.
+- Food Placement: Utilizes the random function in C++ to decide the positions of food items on the game board, ensuring each game offers a unique challenge.
 
 **Data Structures for Game Status**
 - Game State Management:* We utilize a class named `GameState` in `Game.h` to encapsulate all relevant game information, such as the positions of all items on the board, the score, and the game time. This organization aids in maintaining clean state management and easy debugging.
 
 **Memory Management**
-Game Entities: Using pointers and linked lists to manage dynamic elements of the game such as the snake's segments and food items, which are created and destroyed as the game progresses.
+- Game Entities: Using pointers and linked lists to manage dynamic elements of the game such as the snake's segments and food items, which are created and destroyed as the game progresses.
 
 **Artificial Intelligence**
 - AI Opponent: The game features an AI snake that competes against the player. The AI's movement decisions are governed by a set of algorithms that mimic strategic thinking, aiming to collect food efficiently while avoiding the player snake and the game boundaries.
