@@ -5,10 +5,10 @@ Demo video:
 
 
 ### Description
-The Snake Game is set in a post-apocalyptic world, evolving the classic snake gameplay into a narrative-driven, competitive experience. 
+**The Snake Game** is set in a post-apocalyptic world, evolving the classic snake gameplay into a narrative-driven, competitive experience. 
 In this game, you control a snake, competing against an AI to gather scarce resources amidst a backdrop of nuclear winter and desolation.
 
-Your mission: outsmart the AI opponent by consuming more food within a set time limit, demonstrating your worthiness as the next snake warrior to save humanity.
+**Your mission:** outsmart the AI opponent by consuming more food within a set time limit, demonstrating your worthiness as the next snake warrior to save humanity.
 
 ### How to play? 
 In the main menu, you have the following options:
