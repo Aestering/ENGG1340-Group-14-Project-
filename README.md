@@ -3,7 +3,7 @@ Demo video:
 
 ## Team members 🧑‍💻👩‍💻
 - Das Josh Dunmore
-- Maharramov Ismayil
+- Maharramov Ismayil (3036205450)
 - Medetova Aidana (3036191556)
 - Villamor Lester Aaron Antonio
 
