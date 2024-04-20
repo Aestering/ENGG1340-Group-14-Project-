@@ -1,16 +1,16 @@
 # ENGG1340-Group-14-Project: Snake Game
 Demo video:
 
-### Team members 
+### Team members 🧑‍💻👩‍💻
 
 
-### Description
+### Description 🤖
 **The Snake Game** is set in a post-apocalyptic world, evolving the classic snake gameplay into a narrative-driven, competitive experience. 
 In this game, you control a snake, competing against an AI to gather scarce resources amidst a backdrop of nuclear winter and desolation.
 
 **Your mission:** outsmart the AI opponent by consuming more food within a set time limit, demonstrating your worthiness as the next snake warrior to save humanity.
 
-### How to play? 
+### How to play? 🧐
 In the main menu, you have the following options:
 - _Start Game:_ Jump right into the action.
 - _Read Backstory:_ Immerse yourself in the lore of the world you're about to enter.
@@ -46,6 +46,6 @@ That's all!
   - Player.cpp and Player.h: Define player-specific data and functionalities, such as score tracking and snake management.
   - Bot.cpp and Bot.h: Govern the AI snake's behavior, providing a challenging adversary for the player.
 
-### Non-standard libraries
+### Non-standard libraries 📖
 **ncurses Library Integration:** Utilizes the `ncurses` library to create a responsive and visually appealing terminal-based user interface, enabling intuitive game control and display without the need for a graphical environment.
 
