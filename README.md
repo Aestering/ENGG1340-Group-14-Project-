@@ -50,5 +50,5 @@ That's all!
   - Bot.cpp and Bot.h: Govern the AI snake's behavior, providing a challenging adversary for the player.
 
 ## Non-standard libraries 📖
-**ncurses Library Integration:** Utilizes the `ncurses` library to create a responsive and visually appealing terminal-based user interface, enabling intuitive game control and display without the need for a graphical environment.
+**ncurses Library Integration:** `ncurses` library is used to create a responsive and visually appealing terminal-based user interface, enabling intuitive game control and display without the need for a graphical environment.
 
