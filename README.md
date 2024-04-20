@@ -2,10 +2,10 @@
 Demo video:
 
 ## Team members 🧑‍💻👩‍💻
-Das Josh Dunmore
-Maharramov Ismayil
-Medetova Aidana (3036191556)
-Villamor Lester Aaron Antonio
+- Das Josh Dunmore
+- Maharramov Ismayil
+- Medetova Aidana (3036191556)
+- Villamor Lester Aaron Antonio
 
 ## Description 🤖
 **The Snake Game** is set in a post-apocalyptic world, evolving the classic snake gameplay into a narrative-driven, competitive experience. 
