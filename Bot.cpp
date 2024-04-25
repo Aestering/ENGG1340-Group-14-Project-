@@ -17,7 +17,8 @@ Bot::~Bot(){
 
 }
 /**
- * @brief updates the direction of the bot snake according to the difficulty
+ * @brief updates the direction of the bot snake according to the difficulty, bot 
+ * chooses the best route and depending on the difficulty it will make some number of random moves.
  * 
  * @param appleX 
  * @param appleY 
@@ -27,8 +28,11 @@ void Bot::update_direction(int appleX, int appleY, int difficulty) {
     int botX = x[0];
     int botY = y[0];
     srand(time(NULL));
+    
+    //difficulty formula
     int flag = rand() % ((3 * difficulty + 1)/ 2);
     if(difficulty == 5) flag = 1;
+
     int distanceX = appleX - botX;
     int distanceY = appleY - botY;
 
