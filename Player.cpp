@@ -25,10 +25,21 @@ enum Direction get_input(){
     }
     return Error;
 }
+
 bool thread_running = true;
+
+/**
+ * @brief Check that whether snake goes into itself or not
+ * 
+ * @param before 
+ * @param after 
+ * @return true 
+ * @return false 
+ */
 bool islegible(Direction before, Direction after){
     return (std::max(before, after) - std::min(before, after)) != 2;
 }
+
 void *handle_thread(void *p){
     struct Player *player = (Player*)p;
     while (thread_running)
@@ -37,6 +48,7 @@ void *handle_thread(void *p){
     }
     pthread_exit(NULL); 
 }
+
 Player::Player(){
     x.resize(100, -1);
     y.resize(100, -1);
@@ -45,6 +57,7 @@ Player::Player(){
     y[0] = 1;
     pthread_create(&update_thread, NULL, handle_thread, this);
 }
+
 Player::~Player(){
     thread_running = false;
 }
