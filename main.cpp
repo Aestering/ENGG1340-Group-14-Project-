@@ -7,6 +7,7 @@
 #include <thread>
 using namespace std;
 struct termios t;
+
 void reset_terminal(){
     printf("\e[m"); // reset color changes
     printf("\e[?25h"); // show cursor
@@ -30,12 +31,40 @@ void printWithSuspense(const string& text, int delayMs) {
     }
     cout << endl;
 }
+void printTheDifficultyMenu(int difficulty){
+    std::cout << "=== Difficulty Menu ===" << std::endl;
+    for (int i = 1; i <= 5; i++) {
+        if (i == difficulty) {
+            std::cout << "> ";
+        }
+        std::cout << i << ". ";
+        switch (i) {
+            case 1:
+                std::cout << "Beginner";
+                break;
+            case 2:
+                std::cout << "Easy";
+                break;
+            case 3:
+                std::cout << "Normal";
+                break;
+            case 4:
+                std::cout << "Hard";
+                break;
+            case 5:
+                std::cout << "Insane";
+                break;
+        }
+        std::cout << std::endl;
+    }
+}
 int main() {
     int choice = 1, difficulty = 1;
     bool exitMenu = false;
     int delay1 = 100;
     int delay2 = 10;
-    string message1 = "In the aftermath of World War 3, the world was ravaged by a perpetual nuclear winter that has stripped the land and seas of natural resources.\n"
+
+    string story = "In the aftermath of World War 3, the world was ravaged by a perpetual nuclear winter that has stripped the land and seas of natural resources.\n"
                        "Radioactive mutants emerged, placing humans at the bottom of the food chain.\n"
                        "Constant famines, unknown diseases, and the everlasting cycle of hatred...\n"
                        "Mankind was on the brink of destruction.\n...\n"
@@ -50,7 +79,7 @@ int main() {
                        "You, a candidate in the snake warrior selection test, will compete with other candidates and achieve the right to save humanity once and for all.\n"
                        "The village chief has spoken, and the selection test begins!\n";
 
-    string message2 = "Use the WASD keys to change your snake's moving direction.\n"
+    string tutorial = "Use the WASD keys to change your snake's moving direction.\n"
                        "There are apples scattered around the map, consume more apples than your opponent within the time limit.\n"
                        "Choose your difficulty wisely, it might be too hard for you!\n"
                        "Good luck, snake warrior!\n";
@@ -103,75 +132,27 @@ int main() {
                         break;
                     case 2:
                         system("clear"); 
-                        printWithSuspense(message1, delay1);
+                        printWithSuspense(story, delay1);
                         cout << "Press Enter to continue..." << endl;
                         cin.ignore();
                         break;
 
                     case 3:
                         system("clear");
-                        printWithSuspense(message2, delay2);
+                        printWithSuspense(tutorial, delay2);
                         cout << "Press Enter to continue..." << endl;
                         cin.ignore();
                         break;
                     case 4:
                         system("clear"); 
-                        std::cout << "=== Difficulty Menu ===" << std::endl;
-                        for (int i = 1; i <= 5; i++) {
-                            if (i == difficulty) {
-                                std::cout << "> ";
-                            }
-                            std::cout << i << ". ";
-                            switch (i) {
-                                case 1:
-                                    std::cout << "Beginner";
-                                    break;
-                                case 2:
-                                    std::cout << "Easy";
-                                    break;
-                                case 3:
-                                    std::cout << "Normal";
-                                    break;
-                                case 4:
-                                    std::cout << "Hard";
-                                    break;
-                                case 5:
-                                    std::cout << "Insane";
-                                    break;
-                            }
-                            std::cout << std::endl;
-                        }
+                        printTheDifficultyMenu(difficulty);
                         read(STDIN_FILENO, &input, 1);
                         while (input != '\n')
                         {
                             if(input == 'w' && difficulty > 1) difficulty--;
                             else if(input == 's' && difficulty < 5) difficulty++;
                             system("clear"); 
-                            std::cout << "=== Difficulty Menu ===" << std::endl;
-                            for (int i = 1; i <= 5; i++) {
-                                if (i == difficulty) {
-                                    std::cout << "> ";
-                                }
-                                std::cout << i << ". ";
-                                switch (i) {
-                                    case 1:
-                                        std::cout << "Beginner";
-                                        break;
-                                    case 2:
-                                        std::cout << "Easy";
-                                        break;
-                                    case 3:
-                                        std::cout << "Normal";
-                                        break;
-                                    case 4:
-                                        std::cout << "Hard";
-                                        break;
-                                    case 5:
-                                        std::cout << "Insane";
-                                        break;
-                                }
-                                std::cout << std::endl;
-                            }
+                            printTheDifficultyMenu(difficulty);
                             read(STDIN_FILENO, &input, 1);
                         }
                         break;
@@ -183,14 +164,15 @@ int main() {
                 }
                 break;
         }
-
+        
+        //print menu continuosly
         system("clear");
         cout << CYAN << "███████╗███╗   ██╗ █████╗ ██╗  ██╗███████╗     ██████╗  █████╗ ███╗   ███╗███████╗" << endl;
-    cout << "██╔════╝████╗  ██║██╔══██╗██║ ██╔╝██╔════╝    ██╔════╝ ██╔══██╗████╗ ████║██╔════╝" << endl;
-    cout << "███████╗██╔██╗ ██║███████║█████╔╝ █████╗      ██║  ███╗███████║██╔████╔██║█████╗  " << endl;
-    cout << "╚════██║██║╚██╗██║██╔══██║██╔═██╗ ██╔══╝      ██║   ██║██╔══██║██║╚██╔╝██║██╔══╝  " << endl;
-    cout << "███████║██║ ╚████║██║  ██║██║  ██╗███████╗    ╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗" << endl;
-    cout << "╚══════╝╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝     ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝" <<  RESET << endl;
+        cout << "██╔════╝████╗  ██║██╔══██╗██║ ██╔╝██╔════╝    ██╔════╝ ██╔══██╗████╗ ████║██╔════╝" << endl;
+        cout << "███████╗██╔██╗ ██║███████║█████╔╝ █████╗      ██║  ███╗███████║██╔████╔██║█████╗  " << endl;
+        cout << "╚════██║██║╚██╗██║██╔══██║██╔═██╗ ██╔══╝      ██║   ██║██╔══██║██║╚██╔╝██║██╔══╝  " << endl;
+        cout << "███████║██║ ╚████║██║  ██║██║  ██╗███████╗    ╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗" << endl;
+        cout << "╚══════╝╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝     ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝" <<  RESET << endl;
         std::cout << "=== Main Menu ===" << std::endl;
         for (int i = 1; i <= 5; i++) {
             if (i == choice) {

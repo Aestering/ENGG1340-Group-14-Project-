@@ -16,7 +16,13 @@ Bot::Bot(){
 Bot::~Bot(){
 
 }
-
+/**
+ * @brief updates the direction of the bot snake according to the difficulty
+ * 
+ * @param appleX 
+ * @param appleY 
+ * @param difficulty 
+ */
 void Bot::update_direction(int appleX, int appleY, int difficulty) {
     int botX = x[0];
     int botY = y[0];
@@ -49,6 +55,7 @@ void Bot::update_direction(int appleX, int appleY, int difficulty) {
     }
     
 }
+
 void Bot::update_body(){
     for(int i = body; i > 0; i--){
         x[i] = x[i - 1];
@@ -79,27 +86,21 @@ bool Bot::check_apple(int appleX, int appleY){
 
     return false;
 }
-bool Bot::check_collision(Player &other){
-    for(int i = 4; i < body; i++){
-       if(x[0] == x[i] && x[0] == y[i]) return true;
-    }
-    for(int i = 0; i < other.body; i++){
-       if(x[0] == other.x[i] && y[0] == other.y[i]) return true;
-    }
-    return false;
-}
+
 void Bot::draw(std::string (&board)[HEIGHT]){
     for(int i = 0; i < body; i++){
         if(x[i] == -1 || y[i] == -1) continue;
         if(board[x[i]][y[i]] == VOID) board[x[i]][y[i]] = BOT_BODY;
     }
 }
+/**
+ * @brief Check that whether snake goes into itself or not
+ * 
+ * @param before 
+ * @param after 
+ * @return true 
+ * @return false 
+ */
 bool Bot::islegible(Direction before, Direction after){
     return (std::max(before, after) - std::min(before, after)) != 2;
 }
-//bool Bot::islegible(int nextX, int nextY){
-    //for(int i = 4; i < body; i++){
-    //   if(nextX == x[i] && nextY == y[i]) return true;
-    //}
-    //return false;
-//}

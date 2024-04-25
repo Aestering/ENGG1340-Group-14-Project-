@@ -18,7 +18,6 @@ public:
     void update_body();
     void update_direction(int appleX, int appleY, int difficulty);
     bool check_apple(int, int);
-    bool check_collision(Player& other);
     bool islegible(Direction before, Direction after);
     void draw(std::string (&board)[HEIGHT]);
     ~Bot();

@@ -22,18 +22,16 @@ enum Direction get_input(){
         case 's':
             return South;
             break;
-        case 'p':
-            exit(0);
     }
     return Error;
 }
-bool running = true;
+bool thread_running = true;
 bool islegible(Direction before, Direction after){
     return (std::max(before, after) - std::min(before, after)) != 2;
 }
 void *handle_thread(void *p){
     struct Player *player = (Player*)p;
-    while (running)
+    while (thread_running)
     {
         player->update_direction();
     }
@@ -42,20 +40,22 @@ void *handle_thread(void *p){
 Player::Player(){
     x.resize(100, -1);
     y.resize(100, -1);
-    running = true;
+    thread_running = true;
     x[0] = 1;
     y[0] = 1;
     pthread_create(&update_thread, NULL, handle_thread, this);
 }
 Player::~Player(){
-    running = false;
+    thread_running = false;
 }
+
 void Player::update_direction(){
     
     Direction direction = get_input();
     if(direction != Error && islegible(this->direction, direction)) this->direction = direction;
 
 }
+
 void Player::update_body(){
     for(int i = body; i > 0; i--){
         x[i] = x[i - 1];
@@ -78,6 +78,8 @@ void Player::update_body(){
     if(y[0] >= WIDTH - 1) y[0] = 1; 
     if(y[0] <= 0) y[0] = WIDTH - 2;
 }
+
+//if the player eats the apple the body length increases 
 bool Player::check_apple(int appleX, int appleY){
     if(x[0] == appleX && y[0] == appleY){
         body++;
