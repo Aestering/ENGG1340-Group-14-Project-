@@ -1,11 +1,11 @@
 # ENGG1340-Group-14-Project: Snake Game
-Demo video:
+Demo video: https://youtu.be/wvLdhAer53s
 
 ## Team members 🧑‍💻👩‍💻
-- Das Josh Dunmore
+- Das Josh Dunmore (3036073390)
 - Maharramov Ismayil (3036205450)
 - Medetova Aidana (3036191556)
-- Villamor Lester Aaron Antonio
+- Villamor Lester Aaron Antonio (3036222769)
 
 ## Description 🤖
 **The Snake Game** is set in a post-apocalyptic world, evolving the classic snake gameplay into a narrative-driven, competitive experience. 
@@ -35,7 +35,7 @@ That's all!
 - Food Placement: Utilizes the random function in C++ to decide the positions of food items on the game board, ensuring each game offers a unique challenge.
 
 **Data Structures for Game Status**
-- Game State Management:* We utilize a class named `GameState` in `Game.h` to encapsulate all relevant game information, such as the positions of all items on the board, the score, and the game time. This organization aids in maintaining clean state management and easy debugging.
+- Game State Management: We utilize a class named `GameState` in `Game.h` to encapsulate all relevant game information, such as the positions of all items on the board, the score, and the game time. This organization aids in maintaining clean state management and easy debugging.
 
 **Memory Management**
 - Game Entities: Using pointers and linked lists to manage dynamic elements of the game such as the snake's segments and food items, which are created and destroyed as the game progresses.
@@ -51,4 +51,3 @@ That's all!
 
 ## Non-standard libraries 📖
 **ncurses Library Integration:** `ncurses` library is used to create a responsive and visually appealing terminal-based user interface, enabling intuitive game control and display without the need for a graphical environment.
-
