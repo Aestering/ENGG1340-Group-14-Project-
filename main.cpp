@@ -25,7 +25,8 @@ void configure_terminal(){
 }
 
 void printWithSuspense(const string& text, int delayMs) {
-    for (char c : text) {
+    // implementing story-style way of showing the story by printing letter by letter
+    for (char c : text) { 
         cout << c << flush;
         this_thread::sleep_for(chrono::milliseconds(delayMs));
     }
@@ -61,8 +62,8 @@ void printTheDifficultyMenu(int difficulty){
 int main() {
     int choice = 1, difficulty = 1;
     bool exitMenu = false;
-    int delay1 = 50;
-    int delay2 = 15;
+    int delay1 = 50; // print timing for the story and instructions respectively
+    int delay2 = 15; 
 
     string story = "In the aftermath of World War 3, the world was ravaged by a perpetual nuclear winter that has stripped the land and seas of natural resources.\n"
                        "Radioactive mutants emerged, placing humans at the bottom of the food chain.\n"
