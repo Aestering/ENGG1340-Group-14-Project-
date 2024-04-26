@@ -62,7 +62,7 @@ int main() {
     int choice = 1, difficulty = 1;
     bool exitMenu = false;
     int delay1 = 100;
-    int delay2 = 10;
+    int delay2 = 25;
 
     string story = "In the aftermath of World War 3, the world was ravaged by a perpetual nuclear winter that has stripped the land and seas of natural resources.\n"
                        "Radioactive mutants emerged, placing humans at the bottom of the food chain.\n"
